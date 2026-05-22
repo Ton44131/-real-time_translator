@@ -1,15 +1,15 @@
 import customtkinter as ctk
 from .view_app_translation_frame import AppTranslationFrame
-from rich.traceback import install
 
-install()
 
 class App(ctk.CTk):
     """
     Main class of the application interface. To run the program, it is necessary to call the run method.
     """
-    def __init__(self) -> None:
+    def __init__(self, controller) -> None:
+        self.cont = 0
         super().__init__()
+        self.controller = controller
         self._settings()
         self.nav_bar()
         self.container_main()
@@ -50,8 +50,20 @@ class App(ctk.CTk):
                        sticky='nsew')
         self.main.grid_rowconfigure((0,1,2,3,4), weight=1)
         self.main.grid_columnconfigure((0,1), weight=1)
+    
+    def check_state(self):
+        if self.translent_view.start_translation:
+            if self.cont ==0:
+                self.controller.capture_coords()
+            self.cont=1
+            self.after(100,self.check_state)
+        else:
+            print('parado')
+            self.cont = 0
+            self.after(100,self.check_state)
+
 
     def run(self):
-
+        self.check_state()
         self.mainloop()
 

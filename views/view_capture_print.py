@@ -1,14 +1,14 @@
 import tkinter as tk
 
-class CaptureAreaWindow(tk.Tk):
+class CaptureAreaWindow(tk.Toplevel):
 
     """
     Class to select the coordinates that will be used to create the translation window.
     
     Use the run method to start.
     """
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self,master) -> None:
+        super().__init__(master)
         self._settings()
 
         # coordinate attributes
@@ -23,7 +23,8 @@ class CaptureAreaWindow(tk.Tk):
         """Configure window settings"""
 
         self.attributes('-fullscreen', True,
-                        '-alpha',0.3
+                        '-alpha',0.3,
+                        '-topmost',True
                         )
     
     def _setup_capture_canvas(self) -> None:
@@ -70,10 +71,4 @@ class CaptureAreaWindow(tk.Tk):
 
     def run(self) -> list[int,int,int,int]:
         """A method that initializes and returns the final value of the coordinates of the selected area."""
-        self.mainloop()
-        return self.coordinates
-    
-t = CaptureAreaWindow()
-print(t.run())
-
-        
+        return self.coordinates   

@@ -5,7 +5,7 @@ class AppTranslationFrame(ctk.CTkFrame):
 
     def __init__(self, master):
         super().__init__(master)
-        self.start_translation = True
+        self.start_translation = False
 
         self.from_lenguage_opition = ["Inglês"]
         self.to_lenguage_opition = ["Português"]
@@ -89,9 +89,22 @@ class AppTranslationFrame(ctk.CTkFrame):
             padx=(5, 0)
         )
     
+    def teste(self):
+        self.start_translation = not self.start_translation
+        self.text_stop_translation = 'Parar tradução'
+        self.text_start_translation = 'Iniciar tradução'
+
+        
+
+        if self.start_translation:
+            self.start_button.configure(text=self.text_stop_translation)
+        else:
+            self.start_button.configure(text=self.text_start_translation)
+            
     def create_start_button(self) -> None:
         self.start_button = ctk.CTkButton(self.container,
-                                          text='Iniciar tradução')
+                                          text='Iniciar tradução',
+                                          command=self.teste)
         self.start_button.grid(row=1,
                                column=0,
                                columnspan=3)
