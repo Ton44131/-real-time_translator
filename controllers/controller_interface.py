@@ -11,8 +11,6 @@ class ControllerApp:
 
     def capture_coords(self):
         if self.translate_frame is None:
-            self.translate_frame = CaptureAreaWindow(self.app_interface)
-            self.app_interface.wait_window(
-                self.translate_frame
-            )
-            self.translate_frame = None
+            self.translate_frame = CaptureAreaWindow(self.app_interface).run()
+            print(self.translate_frame)
+            return self.translate_frame

@@ -71,4 +71,5 @@ class CaptureAreaWindow(tk.Toplevel):
 
     def run(self) -> list[int,int,int,int]:
         """A method that initializes and returns the final value of the coordinates of the selected area."""
+        self.wait_window()
         return self.coordinates   

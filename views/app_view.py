@@ -56,11 +56,9 @@ class App(ctk.CTk):
             if self.cont ==0:
                 self.controller.capture_coords()
             self.cont=1
-            self.after(100,self.check_state)
         else:
-            print('parado')
             self.cont = 0
-            self.after(100,self.check_state)
+        self.after(100,self.check_state)
 
 
     def run(self):
