@@ -13,7 +13,7 @@ class App(ctk.CTk):
         self._settings()
         self.nav_bar()
         self.container_main()
-        self.translent_view = AppTranslationFrame(self.main)
+        self.translent_view = AppTranslationFrame(self.main, self.controller)
         # self.start_translation_frame()
         self.translent_view.grid(row=0,
                                     column=0,
@@ -51,17 +51,19 @@ class App(ctk.CTk):
         self.main.grid_rowconfigure((0,1,2,3,4), weight=1)
         self.main.grid_columnconfigure((0,1), weight=1)
     
-    def check_state(self):
-        if self.translent_view.start_translation:
-            if self.cont ==0:
-                self.controller.capture_coords()
-            self.cont=1
-        else:
-            self.cont = 0
-        self.after(100,self.check_state)
+    # def check_state(self):
+    #     if self.translent_view.start_translation:
+    #         if self.cont ==0:
+    #             self.controller.capture_coords()
+    #             self.capture_started = True
+    #         self.cont=1
+    #     else:
+    #         self.cont = 0
+    #         self.capture_started = False
+    #     self.after(100,self.check_state)
 
 
     def run(self):
-        self.check_state()
+        # self.check_state()
         self.mainloop()
 
